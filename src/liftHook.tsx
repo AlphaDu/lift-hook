@@ -39,7 +39,8 @@ export default function createContainer<
 		}
 		const value = React.useContext(HooksContext)
 		if (value === EMPTY) {
-			throw new Error("Component must be wrapped with <Model.Provider>")
+			console.error("Component must be wrapped with <Model.Provider>")
+			return initValue
 		}
 		return value
 	}
