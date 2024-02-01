@@ -9,6 +9,7 @@ const withLayer = <T extends Model<any, any>>(Model: T) => <P extends JSX.Intrin
 			</Model.Provider>
 		)
 	}
+
 	return Ret
 }
 

@@ -19,7 +19,11 @@ export default function createContainer<
 	State = Parameters<T>[0]
 >(useHook: T, displayName?: string): Model<Value, State> {
 	const HooksContext = React.createContext<Value | typeof EMPTY>(EMPTY)
-	HooksContext.displayName = displayName
+	if (displayName) {
+		HooksContext.displayName = displayName
+	} else {
+		HooksContext.displayName = "Layer"
+	}
 
 	function Provider(props: ModelProviderProps<State>) {
 		if (!isCSR()) {
