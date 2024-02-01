@@ -1,6 +1,6 @@
 {
 	"name": "lift-hook",
-	"version": "0.2.0",
+	"version": "0.3.0-beta.0",
 	"description": "lift hook to context container",
 	"source": "src/liftHook.tsx",
 	"main": "dist/liftHook.js",

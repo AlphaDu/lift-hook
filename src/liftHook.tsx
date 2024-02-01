@@ -1,6 +1,7 @@
 import React from "react"
 import omit from "./omit"
 import isCSR from "./isCSR"
+export { default as withLayer } from "./withLayer"
 const EMPTY: unique symbol = Symbol()
 export type ModelProviderProps<State = any> = Omit<State, "children"> & {
 	children?: React.ReactNode
