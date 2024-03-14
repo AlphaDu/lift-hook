@@ -9,7 +9,7 @@ export type ModelProviderProps<State = any> = Omit<State, "children"> & {
 
 export interface Model<Value, State = void> {
 	Provider: React.ComponentType<ModelProviderProps<State>>
-	useContainer: () => Value | undefined
+	useLayer: () => Value
 	newInstance: () => Model<Value, State>
 }
 
@@ -38,14 +38,13 @@ export default function createContainer<
 		)
 	}
 
-	function useContainer(initValue?: Value): Value | undefined {
-		if (!isCSR()) {
+	function useLayer(initValue?: Value): Value {
+		if (!isCSR() && initValue !== undefined) {
 			return initValue
 		}
 		const value = React.useContext(HooksContext)
 		if (value === EMPTY) {
-			console.error("Component must be wrapped with <Model.Provider>")
-			return initValue
+			throw new Error("Component must be wrapped with <Model.Provider>")
 		}
 		return value
 	}
@@ -53,5 +52,5 @@ export default function createContainer<
 	function newInstance() {
 		return createContainer(useHook)
 	}
-	return { Provider, useContainer, newInstance }
+	return { Provider, useLayer, newInstance }
 }
