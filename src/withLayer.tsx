@@ -2,7 +2,7 @@ import { Model } from "./liftHook"
 import { memo, FC } from "react"
 import React from "react"
 
-const withLayer = <T extends Model<any, void>>(...Models: T[]) => <P extends {},>(Cmp: FC<P>) => {
+const withLayer = <T extends Model<any, void>[]>(...Models: T) => <P extends {},>(Cmp: FC<P>) => {
 	const Ret = (props: P) => {
 		return (
 			<>
