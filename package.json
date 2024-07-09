@@ -1,6 +1,6 @@
 {
 	"name": "lift-hook",
-	"version": "0.5.5",
+	"version": "1.0.0",
 	"description": "lift hook to context container",
 	"source": "src/liftHook.tsx",
 	"main": "dist/liftHook.js",
@@ -12,7 +12,7 @@
 	"scripts": {
 		"format": "prettier --write '**'",
 		"example": "parcel example/index.html --out-dir example/dist",
-		"build": "rm -rf dist && microbundle --external react --globals react=React --strict --no-compress",
+		"build": "rm -rf dist && tsc -p tsconfig.json",
 		"test": "ava"
 	},
 	"keywords": [],
