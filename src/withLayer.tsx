@@ -6,7 +6,7 @@ const withLayer = <T extends Model<any, void>[]>(...Models: T) => <P extends {},
 	const Ret = (props: P) => {
 		return (
 			<>
-				{Models.reduce((acc, Model) => {
+				{Models.reduceRight((acc, Model) => {
 					const { Provider } = Model
 					return <Provider>{acc}</Provider>
 				}, <Cmp {...props} />)}
