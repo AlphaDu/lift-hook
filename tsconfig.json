@@ -22,7 +22,7 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "incremental": false,
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
