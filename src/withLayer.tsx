@@ -9,7 +9,7 @@ const withLayer = <T extends Model<any, void>[]>(...Models: T) => <P extends {},
 			const { Provider } = Before
 
 			const Ret = (props: P) => (
-				<Provider  {...props}>
+				<Provider >
 					<Acc {...props} />
 				</Provider>
 			)
