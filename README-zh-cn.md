@@ -9,38 +9,23 @@
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
 </p>
+> Inspired by [unstated-next](
+# LiftHook
 
-# Unstated Next
-
-> 永远不必再考虑 React 状态管理了，仅仅 200 字节的状态管理解决方案。
-
-- **React Hooks** _React Hooks 用做你所有的状态管理。_
-- **~200 bytes** _min+gz._
-- **熟悉的 API** _仅仅使用了 React，没有依赖第三方库。_
-- **最小 API** _只需 5 分钟学习。_
-- **TypeScript 编写** _推断代码更容易，易于编写 React 代码。_
-
-但是，最重要的问题是：这比 Redux 更好吗？ 答案可能是。
-
-- **它更小。** _比 Redux 小 40 倍。_
-- **它更快。** _组件性能问题。_
-- **它更容易学习。** _你必须已经知道 React Hooks 和 Context 。只需使用它们，它们就会嗨起来。_
-- **更容易集成。** _一次集成一个组件，并且轻松与其他 React 库集成。_
-- **它更容易测试。** _测试 reducers 纯属浪费你的时间，这个库使你更容易测试 React 组件。_
-- **它更容易进行类型检查。** _旨在使你的大多数类型可推断。_
-- **它是最小的。** _仅仅使用了 React 。_
-
-你自己看着办吧！
-
-### [查看 Unstated 迁移手册 &rarr;](#%E4%BB%8E-unstated-%E8%BF%81%E7%A7%BB)
-
-## 安装
+## 一图解释liftHook
 
 ```sh
-npm install --save unstated-next
+pnpm install --save lift-hooks 
 ```
-
 ## Example
+
+
+## Q&A
+1. 什么是liftHook？
+> 
+
+2. 什么是Layer？
+
 
 ```js
 import React, { useState } from "react"
@@ -87,10 +72,10 @@ render(<App />, document.getElementById("root"))
 
 ## API
 
-### `createContainer(useHook)`
+### `liftHoko(useHook)`
 
-```js
-import { createContainer } from "unstated-next"
+```ts
+import createContainer from 'lift-hook'
 
 function useCustomHook() {
   let [value, setInput] = useState()
