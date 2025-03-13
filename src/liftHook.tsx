@@ -3,53 +3,53 @@ import omit from "./omit"
 export { default as withLayer } from "./withLayer"
 const EMPTY: unique symbol = Symbol()
 export type ModelProviderProps<State = any> = Omit<State, "children"> & {
-	children?: React.ReactNode
+  children?: React.ReactNode
 }
 
 export interface Model<Value, State = void> {
-	Provider: React.ComponentType<ModelProviderProps<State>>
-	useLayer: () => Value
-	newInstance: () => Model<Value, State>
+  Provider: React.ComponentType<ModelProviderProps<State>>
+  useLayer: () => Value
+  newInstance: () => Model<Value, State>
 }
 
-export default function createContainer<
-	T extends (props: any) => any,
-	Value = ReturnType<T>,
-	State = Parameters<T>[0]
+export default function liftHook<
+  T extends (props: any) => any,
+  Value = ReturnType<T>,
+  State = Parameters<T>[0]
 >(useHook: T, displayName?: string): Model<Value, State> {
-	const HooksContext = React.createContext<Value | typeof EMPTY>(EMPTY)
-	if (displayName) {
-		HooksContext.displayName = displayName
-	} else {
-		HooksContext.displayName = "Layer:" + useHook.name
-	}
+  const HooksContext = React.createContext<Value | typeof EMPTY>(EMPTY)
+  if (displayName) {
+    HooksContext.displayName = displayName
+  } else {
+    HooksContext.displayName = "Layer:" + useHook.name
+  }
 
-	function Provider(props: ModelProviderProps<State>) {
-		// if (!isCSR()) {
-		// 	return props.children as React.JSX.Element
-		// }
+  function Provider(props: ModelProviderProps<State>) {
+    // if (!isCSR()) {
+    // 	return props.children as React.JSX.Element
+    // }
 
-		const value = useHook(omit(props, ["children"]))
-		return (
-			<HooksContext.Provider value={value}>
-				{props.children}
-			</HooksContext.Provider>
-		)
-	}
+    const value = useHook(omit(props, ["children"]))
+    return (
+      <HooksContext.Provider value={value}>
+        {props.children}
+      </HooksContext.Provider>
+    )
+  }
 
-	function useLayer(): Value {
-		// if (!isCSR() && initValue !== undefined) {
-		// 	return initValue
-		// }
-		const value = React.useContext(HooksContext)
-		if (value === EMPTY) {
-			throw new Error("Component must be wrapped with <Model.Provider>")
-		}
-		return value
-	}
+  function useLayer(): Value {
+    // if (!isCSR() && initValue !== undefined) {
+    // 	return initValue
+    // }
+    const value = React.useContext(HooksContext)
+    if (value === EMPTY) {
+      throw new Error("Component must be wrapped with <Model.Provider>")
+    }
+    return value
+  }
 
-	function newInstance() {
-		return createContainer(useHook)
-	}
-	return { Provider, useLayer, newInstance }
+  function newInstance() {
+    return liftHook(useHook)
+  }
+  return { Provider, useLayer, newInstance }
 }
