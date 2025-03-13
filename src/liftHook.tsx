@@ -1,6 +1,5 @@
 import React from "react"
 import omit from "./omit"
-import isCSR from "./isCSR"
 export { default as withLayer } from "./withLayer"
 const EMPTY: unique symbol = Symbol()
 export type ModelProviderProps<State = any> = Omit<State, "children"> & {
@@ -22,13 +21,13 @@ export default function createContainer<
 	if (displayName) {
 		HooksContext.displayName = displayName
 	} else {
-		HooksContext.displayName = "Layer"
+		HooksContext.displayName = "Layer:" + useHook.name
 	}
 
 	function Provider(props: ModelProviderProps<State>) {
-		if (!isCSR()) {
-			return props.children as React.JSX.Element
-		}
+		// if (!isCSR()) {
+		// 	return props.children as React.JSX.Element
+		// }
 
 		const value = useHook(omit(props, ["children"]))
 		return (
@@ -38,10 +37,10 @@ export default function createContainer<
 		)
 	}
 
-	function useLayer(initValue?: Value): Value {
-		if (!isCSR() && initValue !== undefined) {
-			return initValue
-		}
+	function useLayer(): Value {
+		// if (!isCSR() && initValue !== undefined) {
+		// 	return initValue
+		// }
 		const value = React.useContext(HooksContext)
 		if (value === EMPTY) {
 			throw new Error("Component must be wrapped with <Model.Provider>")

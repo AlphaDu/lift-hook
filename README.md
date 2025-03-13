@@ -10,7 +10,7 @@
   <sup><em>(Please contribute translations!)</em></sup>
 </p>
 
-# Unstated Next
+# Lift Hook
 
 > 200 bytes to never think about React state management libraries ever again
 
@@ -32,12 +32,12 @@ But, the most important question: Is this better than Redux? Well...
 
 So you decide.
 
-### [See Migration From Unstated docs &rarr;](#migration-from-unstated)
+### [See Migration From unstated-next docs &rarr;](#migration-from-unstated-next)
 
 ## Install
 
 ```sh
-npm install --save unstated-next
+pnpm install lift-hook
 ```
 
 ## One Image
@@ -566,17 +566,18 @@ I've always been on the side of React. I want React to win. I would like to see 
 
 If instead of using Unstated, you just want to use React itself, I would highly encourage that. Write blog posts about it! Give talks about it! Spread your knowledge in the community.
 
-## Migration from `unstated`
+## Migration from `unstated-next`
 
-I've intentionally published this as a separate package name because it is a complete reset on the API. This way you can have both installed and migrate incrementally.
+Lift Hook is published as a separate package from unstated-next because it builds upon and improves the API. You can have both installed and migrate incrementally.
 
-Please provide me with feedback on that migration process, because over the next few months I hope to take that feedback and do two things:
+The key improvements in Lift Hook include:
+- Enhanced Layer concept for better local state management
+- Focus on component-specific state rather than global state
+- Maintaining the minimal API approach while adding useful features
 
-- Make sure `unstated-next` fulfills all the needs of `unstated` users.
-- Make sure `unstated` has a clean migration process towards `unstated-next`.
+When migrating from unstated-next to Lift Hook, you'll need to:
+1. Install Lift Hook: `pnpm install lift-hook`
+2. Update your imports from `unstated-next` to `lift-hook`
+3. Replace `createContainer` with the Layer concept where appropriate
 
-I may choose to add APIs to either library to make life easier for developers. For `unstated-next` I promise that the added APIs will be as minimal as possible and I'll try to keep the library small.
-
-In the future, I will likely merge `unstated-next` back into `unstated` as a new major version. `unstated-next` will still exist so that you can have both `unstated@2` and `unstated-next` installed. Then when you are done with the migration, you can update to `unstated@3` and remove `unstated-next` (being sure to update all your imports as you do... should be just a find-and-replace).
-
-Even though this is a major new API change, I hope that I can make this migration as easy as possible on you. I'm optimizing for you to get to using the latest React Hooks APIs and not for preserving code written with `Unstated.Container`'s. Feel free to provide feedback on how that could be done better.
+Lift Hook maintains the same philosophy as unstated-next - keeping your state management simple and React-centric, while adding improvements that make local state management even more effective.

@@ -2,14 +2,12 @@ const omit = <T extends object, K extends keyof T>(
 	obj: T,
 	keys: Array<K>,
 ): Omit<T, K> => {
-	let res: any = {}
-	let objKeys = Object.keys(obj) as Array<K>
-	objKeys.forEach(objKey => {
-		if (keys.indexOf(objKey) < -1) {
-			res[objKey] = obj[objKey]
-		}
+	// remove keys from obj
+	const newObj = { ...obj }
+	keys.forEach((key) => {
+		delete newObj[key]
 	})
-	return res
+	return newObj
 }
 
 export default omit
