@@ -40,6 +40,25 @@ So you decide.
 npm install --save unstated-next
 ```
 
+## One Image
+
+### Layer
+
+Layer is the core concept of Lift Hook. It's essentially a Context, and the Layer's Provider can be shared by multiple components. To better reflect its characteristics, it's named "layer".
+![Image](https://github.com/user-attachments/assets/b5113a61-df6a-4742-8dc5-57046e784efd)
+
+## Acknowledgements
+Inspired by and improved from unstated-next:
+- [unstated-next](https://github.com/jamiebuilds/unstated-next)
+
+## Core Concepts
+
+## VS Redux, Mobx, Zustand, jotai...
+
+We don't claim to be better than other state management libraries. Essentially, this library has less than 200 lines of code and is almost just an improved version of unstated-next. We simply want to promote the following state management concepts based on this library:
+- Non-global state, but rather combining appropriate state management solutions based on local state (Layer)
+- Component lifecycle logic should not be separated, and hooks are born for this purpose
+
 ## Example
 
 ```js
