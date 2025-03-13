@@ -25,10 +25,6 @@ export default function liftHook<
   }
 
   function Provider(props: LayerProviderProps<State>) {
-    // if (!isCSR()) {
-    // 	return props.children as React.JSX.Element
-    // }
-
     const value = useHook(omit(props, ["children"]))
     return (
       <HooksContext.Provider value={value}>
