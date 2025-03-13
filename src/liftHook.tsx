@@ -2,21 +2,21 @@ import React from "react"
 import omit from "./omit"
 export { default as withLayer } from "./withLayer"
 const EMPTY: unique symbol = Symbol()
-export type ModelProviderProps<State = any> = Omit<State, "children"> & {
+export type LayerProviderProps<State = any> = Omit<State, "children"> & {
   children?: React.ReactNode
 }
 
-export interface Model<Value, State = void> {
-  Provider: React.ComponentType<ModelProviderProps<State>>
+export interface Layer<Value, State = void> {
+  Provider: React.ComponentType<LayerProviderProps<State>>
   useLayer: () => Value
-  newInstance: () => Model<Value, State>
+  newInstance: () => Layer<Value, State>
 }
 
 export default function liftHook<
   T extends (props: any) => any,
   Value = ReturnType<T>,
   State = Parameters<T>[0]
->(useHook: T, displayName?: string): Model<Value, State> {
+>(useHook: T, displayName?: string): Layer<Value, State> {
   const HooksContext = React.createContext<Value | typeof EMPTY>(EMPTY)
   if (displayName) {
     HooksContext.displayName = displayName
@@ -24,7 +24,7 @@ export default function liftHook<
     HooksContext.displayName = "Layer:" + useHook.name
   }
 
-  function Provider(props: ModelProviderProps<State>) {
+  function Provider(props: LayerProviderProps<State>) {
     // if (!isCSR()) {
     // 	return props.children as React.JSX.Element
     // }
@@ -43,7 +43,7 @@ export default function liftHook<
     // }
     const value = React.useContext(HooksContext)
     if (value === EMPTY) {
-      throw new Error("Component must be wrapped with <Model.Provider>")
+      throw new Error("Component must be wrapped with <Layer.Provider>")
     }
     return value
   }
