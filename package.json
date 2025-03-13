@@ -1,12 +1,16 @@
 {
   "name": "lift-hook",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "lift hook to context container",
   "source": "src/liftHook.tsx",
   "main": "dist/liftHook.js",
   "module": "dist/liftHook.js",
   "types": "dist/liftHook.d.ts",
   "amdName": "LiftHook",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlphaDu/lift-hook.git"
+  },
   "sideEffects": false,
   "scripts": {
     "format": "prettier --write '**'",
