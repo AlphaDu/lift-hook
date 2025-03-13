@@ -38,12 +38,11 @@ export default function liftHook<
   }
 
   function useLayer(): Value {
-    // if (!isCSR() && initValue !== undefined) {
-    // 	return initValue
-    // }
     const value = React.useContext(HooksContext)
     if (value === EMPTY) {
-      throw new Error("Component must be wrapped with <Layer.Provider>")
+      throw new Error(
+        `Component must be wrapped with <${HooksContext.displayName ?? "Layer"}.Provider>`
+      )
     }
     return value
   }
